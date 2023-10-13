@@ -1,10 +1,6 @@
-import { PointerEventGroup } from "artistic-engine/event";
-
 import { Global } from "./global";
-import { Scene } from "./scene";
 import { AssetLoader } from "artistic-engine/loader";
 import { Modifier } from "artistic-engine/modifiers";
-import { Inanis } from "./sprites/inanis";
 
 export async function onLoad() {
     // const data1: Blob = Global.Engine.AssetLoader.getImage("inanis");
@@ -57,7 +53,7 @@ export async function onLoad() {
             for (const audio of audios) {
                 audio.start(1, 0);
             }
-            
+
             const colorNow = Global.currentColor;
             const colorNext = Global.Color[0];
             

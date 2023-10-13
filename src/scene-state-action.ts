@@ -21,7 +21,7 @@ const stateFunctions: ((e: PointerEvent) => boolean)[] = [
             let next: number;
             next = (now + 1) % 4;
 
-            (<Scene>Global.Engine.Scene).click(e.x, e.y);
+            // (<Scene>Global.Engine.Scene).click(e.x, e.y);
             
             Global.ActiveAudioTrack = next;
             const colorNow = Global.currentColor;

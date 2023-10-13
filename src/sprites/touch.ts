@@ -2,9 +2,8 @@ import { Sprite, TextSprite } from "artistic-engine/sprite";
 import { ResolutionVector2D } from "../helper/resolution-vector2D";
 import { Global } from "../global";
 import { getTextWidth } from "../helper/fontutil";
-import { ComputedVector2D } from "../helper/computed-vector2D";
 import { FontBuilder } from "artistic-engine";
-import { EaseFunctions, Modifier, SequentialModifier } from "artistic-engine/modifiers";
+import { EaseFunctions, Modifier } from "artistic-engine/modifiers";
 import { Scene } from "../scene";
 
 export class TouchSprite extends Sprite {

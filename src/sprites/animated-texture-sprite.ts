@@ -1,5 +1,4 @@
 import { TextureSprite } from "artistic-engine/sprite";
-import { Global } from "../global";
 
 export class AnimatedTextureSprite extends TextureSprite {
     protected textures: ImageBitmap[];
@@ -24,7 +23,7 @@ export class AnimatedTextureSprite extends TextureSprite {
         this.texture = this.textures[index % this.textures.length] ;
     }
 
-    beforeClip(context: CanvasRenderingContext2D, delay: number): void {
+    beforeClip(_: CanvasRenderingContext2D, delay: number): void {
         if (this.fps === 0) return;
         this.delaySum += delay;
         const pastFrmae = Math.floor(this.delaySum / (1000 / this.fps));

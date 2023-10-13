@@ -1,8 +1,8 @@
-import { Rectangle, Sprite } from "artistic-engine/sprite";
+import { Sprite } from "artistic-engine/sprite";
 import { IPointerListener } from "artistic-engine/event";
 import stateFunctions from "./scene-state-action";
 import { TouchSprite } from "./sprites/touch";
-import { ConcurrentModifier, Modifier, SequentialModifier } from "artistic-engine/modifiers";
+import { Modifier, SequentialModifier } from "artistic-engine/modifiers";
 import { Global } from "./global";
 import { TransitionSprite } from "./sprites/transition";
 
@@ -37,7 +37,7 @@ export class Scene extends Sprite implements IPointerListener {
         return true;
     }
     
-    onDraw(context: CanvasRenderingContext2D, delay: number): void {
+    onDraw(context: CanvasRenderingContext2D, _: number): void {
         context.fillStyle = Global.CurrentColor[0];
         context.fillRect(0, 0, this.W, this.H);
 
@@ -70,7 +70,7 @@ export class Scene extends Sprite implements IPointerListener {
         
         Global.Engine.registerModifier(new SequentialModifier(
             this.touchSprite.onStart(),
-            new Modifier(0, 1, 1500, (v) => {
+            new Modifier(0, 1, 1500, () => {
                 if (this.touchSprite.Parent === this) {
                     this.detachChildren(this.touchSprite);
                     this.transitionSprite = new TransitionSprite();
@@ -78,11 +78,5 @@ export class Scene extends Sprite implements IPointerListener {
                 }
             })
         ));
-    }
-
-    public click(x: number, y: number) {
-        
-    }
-
-    
+    }    
 }
