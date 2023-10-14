@@ -14,6 +14,8 @@ export class Global {
 
     public static Engine: Engine;
 
+    public static loaded: boolean = false;
+
     public static AudioTracks: AudioBufferSourceNode[];
 
     public static AudioGains: GainNode[];

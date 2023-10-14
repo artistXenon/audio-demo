@@ -53,21 +53,23 @@ export async function onLoad() {
             for (const audio of audios) {
                 audio.start(1, 0);
             }
-
-            const colorNow = Global.currentColor;
-            const colorNext = Global.Color[0];
-            
-            Global.Engine.registerModifier(new Modifier(
-                0, 1, 3000, 
-                (v) => {
-                    if (Global.ActiveAudioTrack === 0) audioGains[0].gain.value = v
-                    
-                    for (let i = 0; i < 9; i++) {
-                        Global.currentColor[i] = colorNow[i] + (colorNext[i] - colorNow[i]) * v;                        
+            setTimeout(() => {
+                Global.loaded = true;
+                const colorNow = Global.currentColor;
+                const colorNext = Global.Color[0];
+                
+                Global.Engine.registerModifier(new Modifier(
+                    0, 1, 3000, 
+                    (v) => {
+                        if (Global.ActiveAudioTrack === 0) audioGains[0].gain.value = v
+                        
+                        for (let i = 0; i < 9; i++) {
+                            Global.currentColor[i] = colorNow[i] + (colorNext[i] - colorNow[i]) * v;                        
+                        }
                     }
-                }, 
-                (p) => p < 0.33 ? 0 : ((p - 0.33) * 1.2 + 0.2)
-            ));
+                ));
+            }, 1000);
+
         }); 
 
     // Global.Engine.Canvas.requestFullscreen();

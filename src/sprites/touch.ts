@@ -58,10 +58,10 @@ export class TouchSprite extends Sprite {
         context.fillStyle = Global.CurrentColor[1];
         context.arc(0, 0, this.ballRadius, 0, Math.PI * 2);
         context.fill();
+        
+        this.delaySum += delay;        
 
-        this.delaySum += delay;
-
-        const timeUnit = 1500;
+        const timeUnit = Global.loaded ? 1714.28 : 1500;
         const channelUpdate = Math.floor(this.delaySum / timeUnit);
         const channelProgess = this.delaySum % timeUnit;
         let renderProcess: number = 0;
@@ -120,11 +120,21 @@ export class TouchSprite extends Sprite {
         const t = this.t;
         t.Property.fill = Global.CurrentColor[2];
         if ((<Scene>this.parent).State === 1) {
-            t.Text = "No." + Global.ActiveAudioTrack;
+            if (Global.loaded) {
+                t.Text = "Tr." + (Global.ActiveAudioTrack + 1);
+                t.Y = -10;
+            } else {
+                const c = Date.now() % 500;
+                if (c < 100) t.Text = "⠏⠼";
+                else if (c < 200) t.Text = "⠧⠹";
+                else if (c < 300) t.Text = "⠮⠝";
+                else if (c < 400) t.Text = "⠭⠭";
+                else t.Text = "⠫⠵";
+                t.Y = -10;
+            }
             const mtx = getTextWidth(t.Text, t.Property.font);
             t.W = mtx.width - 1;
             t.X = - t.W / 2;
-            t.Y = -10;
         }
     }
 
