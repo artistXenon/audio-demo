@@ -59,7 +59,7 @@ export async function onLoad() {
                 const colorNext = Global.Color[0];
                 
                 Global.Engine.registerModifier(new Modifier(
-                    0, 1, 3000, 
+                    0, 1, 500, 
                     (v) => {
                         if (Global.ActiveAudioTrack === 0) audioGains[0].gain.value = v
                         
