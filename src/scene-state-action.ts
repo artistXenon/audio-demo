@@ -14,6 +14,7 @@ const stateFunctions: ((e: PointerEvent) => boolean)[] = [
         return true;
     },
     (e: PointerEvent) => {
+        if (!Global.loaded) return true;
         
         switch (e.type) {
             case "pointerup": 
